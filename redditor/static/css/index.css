@@ -1,0 +1,22 @@
+.reddit-functions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+  }
+
+  .reddit-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+  }
+
+  .reddit-nav a {
+    color: maroon;
+    text-decoration: none;
+  }
+
+  .insta-heart {
+    padding: 0 2rem;
+  }
