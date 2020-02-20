@@ -1,0 +1,30 @@
+{% extends 'base.html'%}
+{% load bootstrap3 %}
+{% include "navbar.html" %}
+{% block content %}
+    <div class="container">
+    
+  <div class="profile d-flex justify-content-center mt-5">
+    <div class="media">
+            <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
+            <div class="media-body">
+                <h2 class="account-heading">{{ user.username }}</h2>
+                <p class="text-secondary">{{ user.email }}</p>
+            </div>
+    <div class="data">
+      <div class="profile-info d-flex align-items-center">
+        <h2>{{user.username}}</h2>
+        <p class="px-3 edit"><a href="{% url 'update_profile' %}">Edit Profile</a></p>
+      </div>
+      <p>{{user.email}}</p>
+      <div class="profile-data d-flex">
+        <p>0 posts</p>
+        <p class="px-3">0 follower</p>
+        <p>0 following</p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %} 
+
+{% csrf_token %} 

@@ -21,7 +21,7 @@ class Post(models.Model):
 
 class Image(models.Model):
     name = models.CharField(max_length=50)
-    image = models.ImageField(upload_to = 'reddit')
+    image = models.ImageField(upload_to = 'redditss')
     caption = models.CharField(max_length=300)
     date_posted = models.DateField(default=timezone.now)
     
@@ -39,7 +39,7 @@ class Comment(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE,)
-    
+    profile_photo = models.ImageField(upload_to = 'redditss')
     bio = models.TextField(max_length=300, null=True)
     
 
