@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'redditor',
     'bootstrap3',
     'crispy_forms',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
