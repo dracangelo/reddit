@@ -24,15 +24,7 @@ class UserUpdateForm(forms.ModelForm):
 class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['profile_photo', 'bio']
-
-    # def save(self, user=None):
-    #     profile = super(UserCreationForm, self).save(commit=False)
-    #     if user:
-    #         profile.user = user
-    #         profile.save()
-    #         return profile
-
+        fields = ['image']
 
 class PostPictureForm(forms.ModelForm):
     class Meta:

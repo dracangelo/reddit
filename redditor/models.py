@@ -9,7 +9,7 @@ from PIL import Image
 
 class Post(models.Model):
     user=models.ForeignKey(User, on_delete=models.CASCADE,null=True)
-    image = models.ImageField(upload_to = 'reddit', null=False)
+    image = models.ImageField(upload_to = 'redditss', null=False)
     @classmethod
     def get_posts(cls):
         posts = cls.objects.all()
@@ -38,32 +38,23 @@ class Comment(models.Model):
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE,)
-    profile_photo = models.ImageField(upload_to = 'redditss')
-    bio = models.TextField(max_length=300, null=True)
-    
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='redditss')
 
     def __str__(self):
         return f'{self.user.username} Profile'
 
-        
     def save(self):
         super().save()
 
-        profile_photo = Image.open(self.image.path)
-        #To resize the profile image
-        if image.height > 400 or image.width > 400:
-            output_size = (400, 400)
-            image.thumbnail(output_size)
-            image.save(self.image.path)
+        img = Image.open(self.image.path)
 
-    def delete_profile(self):
-        self.delete()
+        if img.height > 300 or img.width > 300:
+            output_size = (300, 300)
+            img.thumbnail(output_size)
+            img.save(self.image.path)
 
-    def updateProfile(sender, **kwargs):
-        if kwargs['created']:
-            profile = Profile.objects.created(user=kwargs['instance'])
-            post_save.connect(Profile, sender=User)
+
 
     
 
