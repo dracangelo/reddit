@@ -47,8 +47,8 @@ class Profile(models.Model):
         return f'{self.user.username} Profile'
 
         
-    def save_profile(self):
-        self.save()
+    def save(self):
+        super().save()
 
         profile_photo = Image.open(self.image.path)
         #To resize the profile image

@@ -10,32 +10,14 @@ from .models import Post, Comment, Profile, Image
 
 @login_required
 def landing(request):
-    
+    image = Image.objects.all()
   
-    return render(request,'index.html')
+    return render(request,'index.html', {'image': image})
 
 
 @login_required
 def profile(request):
-    # if request.method == 'POST':
-    #     user_form = UserUpdateForm(request.POST)
-    #     profile_form = ProfileUpdateForm(request.POST, request.FILES)
-
-    #     if user_form.is_valid() and profile_form.is_valid():
-    #         user_form.save()
-    #         profile_form.save()
-    #         messages.success(request, f'Your account has been updated!')
-    #         return redirect('profile')
-
-    # else:
-    #     user_form = UserUpdateForm()
-    #     profile_form = ProfileUpdateForm()
-
-    # context = {
-    #     'u_form': user_form,
-    #     'p_form': profile_form
-    # }
-
+    
     return render(request, 'profile.html')
 
 
@@ -43,8 +25,8 @@ def profile(request):
 def update_profile(request):
     
     if request.method == 'POST':
-        user_form = UserUpdateForm(request.POST)
-        profile_form = ProfileUpdateForm(request.POST, request.FILES)
+        user_form = UserUpdateForm(request.POST,  instance=request.user)
+        profile_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
 
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
@@ -60,5 +42,6 @@ def update_profile(request):
         'u_form': user_form,
         'p_form': profile_form
     }
+   
 
     return render(request, 'update_profile.html', context)
